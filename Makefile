@@ -1,4 +1,4 @@
-OBJECTS = loader.o kmain.o
+OBJECTS = loader.o kmain.o io.o framebuffer.o serial.o
 CC = gcc
 CFLAGS = -m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector \
 				 -nostartfiles -nodefaultlibs -Wall -Wextra -Werror -c
@@ -21,7 +21,7 @@ minios.iso: kernel.elf
 								-input-charset utf8             \
 								-quiet                          \
 								-boot-info-table                \
-								-o minios.iso                   \
+								-o os.iso                       \
 								iso
 
 run: minios.iso
@@ -34,4 +34,4 @@ run: minios.iso
 		$(AS) $(ASFLAGS) $< -o $@
 
 clean:
-		rm -rf *.o kernel.elf minios.iso
+		rm -rf *.o kernel.elf os.iso
